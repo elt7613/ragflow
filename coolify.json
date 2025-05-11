@@ -1,0 +1,42 @@
+{
+  "dockerfile": "./Dockerfile",
+  "buildArg": [
+    {
+      "name": "LIGHTEN",
+      "value": "1"
+    }
+  ],
+  "port": 9380,
+  "volumes": [
+    {
+      "source": "ragflow-logs",
+      "destination": "/ragflow/logs"
+    },
+    {
+      "source": "nginx-conf",
+      "destination": "/etc/nginx/conf.d/ragflow.conf"
+    },
+    {
+      "source": "proxy-conf",
+      "destination": "/etc/nginx/proxy.conf"
+    },
+    {
+      "source": "nginx-main-conf",
+      "destination": "/etc/nginx/nginx.conf"
+    }
+  ],
+  "environmentVariables": [
+    {
+      "name": "RAGFLOW_IMAGE",
+      "value": "infiniflow/ragflow:v0.18.0-slim"
+    },
+    {
+      "name": "TZ",
+      "value": "UTC"
+    },
+    {
+      "name": "HF_ENDPOINT",
+      "value": "https://hf-mirror.com"
+    }
+  ]
+}
